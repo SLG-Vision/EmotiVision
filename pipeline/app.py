@@ -1,5 +1,5 @@
-from gazedetection.gaze_detection.main import GazeDetection
-from face_retrieval.src.face_retrieval.retrieval import Retrieval
+from face_retrieval.src.retrieval import Retrieval
+from gaze_detection.gaze_detection.main import GazeDetection
 import cv2
 
 
