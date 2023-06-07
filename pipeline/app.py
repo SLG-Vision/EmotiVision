@@ -14,7 +14,7 @@ while(True):
     
     ret = retrieval.evaluateFrame(return_frame)
     
-    print(f"GAZE IS FACING CAMERA:     {is_gaze_facing}       \nIs blacklisted:     {'Found' if ret else 'Not Found'}", end='\r')
+    print(f"Gaze is facing:     {is_gaze_facing} \n Is blacklisted:     {'Found' if ret else 'Not Found'}")
 
     cv2.imshow('frame',  return_frame)
                 
