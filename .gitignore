@@ -1,6 +1,6 @@
 pipeline/gaze_detection/gaze_detection/resources/predictors/shape_predictor_68_face_landmarks.dat
 pipeline/shape_predictor_68_face_landmarks.dat
-
+output*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
