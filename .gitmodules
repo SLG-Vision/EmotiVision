@@ -1,6 +1,3 @@
-[submodule "pipeline/gaze_detection"]
-	path = pipeline/gaze_detection
-	url = git@github.com:SLG-Vision/gaze_detection.git
 [submodule "pipeline/gaze-detection"]
 	path = pipeline/gaze-detection
 	url = git@github.com:jacksalici/gaze-detection.git
