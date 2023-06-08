@@ -1,9 +1,0 @@
-[submodule "pipeline/face_retrieval"]
-	path = pipeline/face_retrieval
-	url = https://github.com/SLG-Vision/face_retrieval.git
-[submodule "pipeline/gaze_detection"]
-	path = pipeline/gaze_detection
-	url = https://github.com/jacksalici/gaze-detection.git
-[submodule "pipeline/fer_classification"]
-	path = pipeline/fer_classification
-	url = https://github.com/SLG-Vision/fer_classification.git
