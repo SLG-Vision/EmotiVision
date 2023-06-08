@@ -4,6 +4,9 @@ from fer_classification.net.FERNet import FERNet
 import cv2
 import torch
 
+import os
+print(os.path.abspath('shape_predictor_68_face_landmarks.dat'))
+
 gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.3,0,0,0.1))
 retrieval = Retrieval("def_blacklist.pt")
 
@@ -27,5 +30,3 @@ while(True):
         break
 
 vid.release()
-
-
