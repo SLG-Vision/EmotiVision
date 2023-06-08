@@ -11,7 +11,7 @@ gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks
 retrieval = Retrieval("def_blacklist.pt")
 
 net = FERNet()
-net.load_state_dict(torch.load('fer_classification/student_distilled.t7'))
+net.load_state_dict(torch.load('pipeline/fer_classification/student_distilled.t7'))
 label = {0:'angry', 1:'disgust', 2:'fear', 3:'happy',  4:'sad', 5:'surprise', 6:'neutral'}
 
 vid = cv2.VideoCapture(0)
