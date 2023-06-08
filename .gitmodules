@@ -4,3 +4,6 @@
 [submodule "pipeline/gaze_detection"]
 	path = pipeline/gaze_detection
 	url = https://github.com/jacksalici/gaze-detection.git
+[submodule "pipeline/fer_classification"]
+	path = pipeline/fer_classification
+	url = https://github.com/SLG-Vision/fer_classification.git
