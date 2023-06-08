@@ -1,0 +1,9 @@
+[submodule "face_retrieval"]
+	path = face_retrieval
+	url = git@github.com:SLG-Vision/face_retrieval.git
+[submodule "gaze_detection"]
+	path = gaze_detection
+	url = git@github.com:SLG-Vision/gaze_detection.git
+[submodule "gaze-detection"]
+	path = gaze-detection
+	url = git@github.com:jacksalici/gaze-detection.git
