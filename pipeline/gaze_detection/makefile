@@ -1,3 +1,0 @@
-run: 
-	python app.py
-
