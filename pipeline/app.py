@@ -13,7 +13,7 @@ retrieval = Retrieval("def_blacklist.pt", threshold=0.90, debug=False, debugAver
 
 fernet_label = {0:'angry', 1:'disgust', 2:'fear', 3:'happy',  4:'sad', 5:'surprise', 6:'neutral'}
 
-retrieval_label = {1:'Detected and identified', 2:'Detected and not recognized', 3: 'Not available yet',}
+retrieval_label = {1:'Detected and identified', 2:'Detected but not identified', 3: 'Not available yet',}
 
 vid = cv2.VideoCapture(0)
 while(True):
