@@ -23,7 +23,7 @@ while(True):
     pred = net(input_tensor)
     ret = retrieval.evaluateFrame(return_frame)
     
-    print(f"Gaze is facing:     {is_gaze_facing} \n Is blacklisted:     {'Found' if ret else 'Not Found'} \n Emotion Detected: {label[torch.argmax(pred).item()]}")
+    print(f"Gaze is facing:     {is_gaze_facing} \n Is blacklisted:     {'Found' if ret else 'Not Found'} \n Emotion Detected: {label[int(torch.argmax(pred).item())]}")
 
     cv2.imshow('frame',  return_frame)
                 
