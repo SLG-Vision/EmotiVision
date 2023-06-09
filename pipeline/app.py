@@ -8,8 +8,8 @@ import torch
 net = FERNet()
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 net.load_state_dict(torch.load('pipeline/student_distilled.t7', map_location=device))
-gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.4,0.3,0.1,0.3))
-retrieval = Retrieval("def_blacklist.pt", threshold=0.85, debug=True, debugAverage=True, usingMtcnn=True)
+gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat",pupil_detection_mode="filtering", video=False, print_on_serial=False, crop_frame_paddings=(0.4,0.3,0.1,0.3))
+retrieval = Retrieval("def_blacklist.pt", threshold=0.90, debug=True, debugAverage=True, toVisualize=True, usingMtcnn=False)
 
 label = {0:'angry', 1:'disgust', 2:'fear', 3:'happy',  4:'sad', 5:'surprise', 6:'neutral'}
 
@@ -19,7 +19,7 @@ while(True):
 
     return_frame, is_gaze_facing = gaze_detection.detect(frame)
     if(is_gaze_facing == False):
-        continue
+        pass
     ret = retrieval.evaluateFrame(return_frame)
     if(ret == 3 and retrieval._usingMtcnn):
         continue
@@ -28,7 +28,7 @@ while(True):
     pred = net(input_tensor)
 
     
-    print(f"Gaze is facing:     {is_gaze_facing} \n Is blacklisted:     {'Found' if ret else 'Not Found'} \n Emotion Detected: {label[int(torch.argmax(pred).item())]}")
+    print(f"Gaze is facing:     {is_gaze_facing} \n Is blacklisted:     {'Found' if ret==1 else 'Not Found'} \n Emotion Detected: {label[int(torch.argmax(pred).item())]}")
     cv2.imshow('frame',  return_frame)
                 
     if cv2.waitKey(1) & 0xFF == ord('q'):
