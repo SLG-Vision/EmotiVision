@@ -21,10 +21,15 @@ while(True):
 
     return_frame, is_gaze_facing = gaze_detection.detect(frame)
     if(is_gaze_facing == False):
-        pass
+        pass    # no tracking condition
+    
     ret = retrieval.evaluateFrame(return_frame)
     if(ret == 3 and retrieval.isUsingMtcnn()):
         continue
+    
+    if(ret == 1):
+        pass    # no tracking condition
+    
     input_tensor = transform(return_frame)
     input_tensor = input_tensor.unsqueeze(0)
     pred = net(input_tensor)
