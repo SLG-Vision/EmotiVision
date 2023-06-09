@@ -7,7 +7,7 @@ import torch
 
 net = FERNet()
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-net.load_state_dict(torch.load('student_distilled.t7', map_location=device))
+net.load_state_dict(torch.load('pipeline/student_distilled.t7', map_location=device))
 gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.3,0,0,0.1))
 retrieval = Retrieval("def_blacklist.pt")
 
