@@ -9,7 +9,7 @@ net = FERNet()
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 net.load_state_dict(torch.load('pipeline/student_distilled.t7', map_location=device))
 gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.4,0.3,0.1,0.3))
-retrieval = Retrieval("def_blacklist.pt", threshold=0.90, debug=True, debugAverage=True, toVisualize=True, usingMtcnn=False)
+retrieval = Retrieval("def_blacklist.pt", threshold=0.90, debug=True, debugAverage=True, toVisualize=True, usingMtcnn=True)
 
 label = {0:'angry', 1:'disgust', 2:'fear', 3:'happy',  4:'sad', 5:'surprise', 6:'neutral'}
 
@@ -21,7 +21,7 @@ while(True):
     if(is_gaze_facing == False):
         pass
     ret = retrieval.evaluateFrame(return_frame)
-    if(ret == 3 and retrieval._usingMtcnn):
+    if(ret == 3 and retrieval.isUsingMtcnn()):
         continue
     input_tensor = transform(return_frame)
     input_tensor = input_tensor.unsqueeze(0)
