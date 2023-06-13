@@ -24,7 +24,19 @@ while(True):
     if(is_gaze_facing == False):
         pass    # no tracking condition
     
+    # recall peggiore:
     code, retrieval_return_string = retrieval.evalFrameTextual(return_frame)
+
+    # recall molto migliore
+    
+    #code, retrieval_return_string = retrieval.evalFrameTextual(frame)
+
+    # recall massima
+    
+    #retrieval.setUsingMtcnn(True)
+    #code, retrieval_return_string = retrieval.evalFrameTextual(frame)
+
+    
     
     if(retrieval.hasMtcnnFailed()):
         continue
