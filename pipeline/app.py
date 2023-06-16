@@ -1,5 +1,5 @@
 from face_retrieval.src.retrieval import Retrieval
-from gaze_detection.gaze_detection.main import GazeDetection
+from gaze_detection.src.main import GazeDetection
 from fer_classification.net.FERNet import FERNet
 from fer_classification.net.utils import transform
 import cv2
