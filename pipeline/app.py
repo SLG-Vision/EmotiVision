@@ -9,7 +9,7 @@ net.load()
 gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.0,0.0,0.0,0.0))
 
 # performing hyperparameters: {thr: 0:18, usingAverage=True}
-retrieval = Retrieval("def_blacklist.pt", threshold=0.18, debug=True, distanceMetric='cosine', usingAverage=True, usingMedian=False, usingMax=False, toVisualize=True, usingMtcnn=False)
+retrieval = Retrieval("me_noaugmentation_blacklist.pt", threshold=0.18, debug=True, distanceMetric='cosine', usingAverage=True, usingMedian=False, usingMax=False, toVisualize=True, usingMtcnn=False)
 
 vid = cv2.VideoCapture(0)
 while(True):
