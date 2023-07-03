@@ -7,3 +7,6 @@
 [submodule "pipeline/gaze_detection"]
 	path = pipeline/gaze_detection
 	url = git@github.com:jacksalici/gaze_detection.git
+[submodule "pipeline/arduino_motor"]
+	path = pipeline/arduino_motor
+	url = https://github.com/SLG-Vision/arduino_camera_motor
