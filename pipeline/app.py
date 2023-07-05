@@ -6,10 +6,10 @@ import time
 net = FER()
 net.load()
 
-gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, print_on_serial=False, crop_frame_paddings=(0.0,0.0,0.0,0.0))
+gaze_detection = GazeDetection(predictor_path="shape_predictor_68_face_landmarks.dat", video=False, pupil_detection_mode="filtering", print_on_serial=True, crop_frame_paddings=(0.0,0.0,0.0,0.0), serial_port="/dev/tty.usbmodem11401")
 
 # performing hyperparameters: {thr: 0:18, usingAverage=True}
-retrieval = Retrieval("me_noaugmentation_blacklist.pt", threshold=0.18, debug=True, distanceMetric='cosine', usingAverage=True, usingMedian=False, usingMax=False, toVisualize=False, usingMtcnn=False)
+retrieval = Retrieval("Zuckerberg_blacklist.pt", threshold=0.18, debug=True, distanceMetric='cosine', usingAverage=True, usingMedian=False, usingMax=False, toVisualize=False, usingMtcnn=False)
 
 vid = cv2.VideoCapture(0)
 
@@ -20,6 +20,7 @@ fps = 0
 
 while(True):
     _, frame = vid.read()
+    
 
     frame_count += 1
     if frame_count % 10 == 0:
@@ -29,8 +30,18 @@ while(True):
 
 
     return_frame, is_gaze_facing = gaze_detection.detect(frame)
+    
+    
+    print(f"\nGaze is facing: {is_gaze_facing}")
+          
+    cv2.imshow('frame',  return_frame)
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+     
     if(is_gaze_facing == False):
         pass    # no tracking condition
+       
     
     # recall peggiore:
     #code, retrieval_return_string = retrieval.evalFrameTextual(return_frame)
@@ -43,18 +54,19 @@ while(True):
     
     retrieval.setUsingMtcnn(True)
     code, retrieval_return_string = retrieval.evalFrameTextual(frame)
+    print(f"Retrieval status: {retrieval_return_string}")
     
     if(retrieval.hasMtcnnFailed()):
-        print("Fail or nobody in frame\n")
+        print("Retrieval status: Fail or nobody in frame")
         continue
     
     if(retrieval.isPersonBlacklisted()):
-        pass    # no tracking condition
+        continue    # no tracking condition
     
-    print(f"\nGaze is facing:\t{is_gaze_facing}\t\n\tRetrieval status: {retrieval_return_string}\t\n\tEmotion Detected: {net.predict(return_frame)}\t\n\tFPS: {round(fps,2) if frame_count > 10 else 'Computing...'}")
-    #cv2.imshow('frame',  return_frame)
+    print(f"Emotion Detected: {net.predict(return_frame)}\nFPS: {round(fps,2) if frame_count > 10 else '...'}")
+    
+    
                 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    
 
 vid.release()
